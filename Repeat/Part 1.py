@@ -79,6 +79,28 @@ def spell(*args):
     return my_dict
 
 
-words = ['россия', 'Австрия', 'австралия', 'РумыниЯ', 'Украина', 'КИТай', 'УЗБЕКИСТАН']
+# Task 10
+def choose_plural(amount, declensions):
+    second_choice = (2, 3, 4)
+    third_choice = (0, 5, 6, 7, 8, 9, 11, 12, 13, 14)
 
-print(spell(*words))
+    if (amount == 1 or amount % 10 == 1) and (amount not in third_choice) and (amount % 100 not in third_choice):
+        return f'{amount} {declensions[0]}'
+    elif amount % 10 in second_choice and amount not in third_choice and amount % 100 not in third_choice:
+        return f'{amount} {declensions[1]}'
+    elif amount % 10 in third_choice or amount in third_choice or amount % 100 in third_choice:
+        return f'{amount} {declensions[2]}'
+
+
+# Task 11
+def get_biggest(numbers):
+    if not numbers:
+        return -1
+    else:
+        # Transform numbers to str
+        numbers = list(map(str, numbers))
+        # Find the longest str
+        max_len = int(max(numbers, key=len))
+        # We sort by multiplying the term by the length of the longest element
+        numbers = sorted(numbers, key=lambda item: item * max_len, reverse=True)
+        return int(''.join(numbers))

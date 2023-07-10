@@ -36,4 +36,27 @@ def reverse_num():
     return ' '.join(map(str, part_1 + part_2 + part_3))
 
 
-print(reverse_num())
+# Task 4
+def more_one():
+    nums = sorted([int(i) for i in input().split(' ')])
+    nums_2 = []
+    for num in nums:
+        if nums.count(num) > 1:
+            nums_2.append(num)
+    print(*sorted(set(nums_2)))
+
+
+# Task 5
+def max_group():
+    dict_num = {}
+
+    for num in range(1, int(input())+1):
+        my_sum = sum(map(lambda x: int(x), str(num)))
+        if my_sum not in dict_num:
+            dict_num[my_sum] = dict_num.get(my_sum, [num])
+        else:
+            dict_num[my_sum].append(num)
+
+    return len(max(dict_num.values(), key=len))
+
+
